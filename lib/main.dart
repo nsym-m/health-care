@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_care/TestPage1.dart';
 import 'package:health_care/TestPage2.dart';
-import 'package:health_care/TestPage3.dart';
+import 'package:health_care/HealthApp.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         routes: {
           "/test1": (BuildContext context) => TestPage1(),
           "/test2": (BuildContext context) => TestPage2(),
-          "/test3": (BuildContext context) => TestPage3(),
+          "/test3": (BuildContext context) => HealthApp(),
          }
     );
   }

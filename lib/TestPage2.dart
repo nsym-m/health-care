@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_care/TestPage3.dart';
+import 'package:health_care/HealthApp.dart';
 
 class TestPage2 extends StatelessWidget {
   @override
@@ -15,7 +15,7 @@ class TestPage2 extends StatelessWidget {
               onPressed: () => {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return TestPage3();
+                      return HealthApp();
                     }))
                   },
               child: Text("進む", style: TextStyle(fontSize: 80))),
