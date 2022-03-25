@@ -46,13 +46,22 @@ class _HealthAppState extends State<HealthApp> {
       HealthDataAccess.READ,
       HealthDataAccess.READ,
       HealthDataAccess.READ,
+      HealthDataAccess.READ,
+      HealthDataAccess.READ,
+      HealthDataAccess.READ,
     ];
 
     final now = DateTime.now();
     final yesterday = now.subtract(Duration(days: 1));
 
-    bool? requestedPermissions = await HealthFactory.requestPermissions(types) ?? false;
-    bool requestedAuthorization = await health.requestAuthorization(types, permissions: permissions);
+    var hasPermission =
+        HealthFactory.hasPermissions(types, permissions: permissions);
+
+    if (hasPermission == null) {
+      await HealthFactory.requestPermissions(types);
+    }
+    bool requestedAuthorization =
+        await health.requestAuthorization(types, permissions: permissions);
 
     if (requestedAuthorization) {
       try {
