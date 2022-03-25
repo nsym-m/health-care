@@ -36,6 +36,9 @@ class _HealthAppState extends State<HealthApp> {
       HealthDataType.WEIGHT,
       HealthDataType.HEIGHT,
       HealthDataType.BLOOD_GLUCOSE,
+      HealthDataType.SLEEP_ASLEEP,
+      HealthDataType.SLEEP_AWAKE,
+      HealthDataType.SLEEP_IN_BED,
     ];
 
     final permissions = [
@@ -48,15 +51,16 @@ class _HealthAppState extends State<HealthApp> {
     final now = DateTime.now();
     final yesterday = now.subtract(Duration(days: 1));
 
-    bool requested = await health.requestAuthorization(types, permissions: permissions);
+    bool? requestedPermissions = await HealthFactory.requestPermissions(types) ?? false;
+    bool requestedAuthorization = await health.requestAuthorization(types, permissions: permissions);
 
-    if (requested) {
+    if (requestedAuthorization) {
       try {
         List<HealthDataPoint> healthData =
-          await health.getHealthDataFromTypes(yesterday, now, types);
+            await health.getHealthDataFromTypes(yesterday, now, types);
 
         _healthDataList.addAll((healthData.length < 100)
-          ? healthData
+            ? healthData
             : healthData.sublist(0, 100));
       } catch (error) {
         print("Exception in getHealthDataFromTypes: $error");
@@ -246,14 +250,14 @@ class _HealthAppState extends State<HealthApp> {
             ],
           ),
           body: Center(
-            child: Column(mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
                 _content(),
                 TextButton(
-                  onPressed: () => {Navigator.of(context).pop()},
-                  child: Text("戻る", style: TextStyle(fontSize: 40)))
-            ])
-          )),
+                    onPressed: () => {Navigator.of(context).pop()},
+                    child: Text("戻る", style: TextStyle(fontSize: 40)))
+              ]))),
     );
   }
 }
