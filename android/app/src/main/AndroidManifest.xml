@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.nsym.health-care">
+    package="dev.nsym.health_care">
    <application
         android:label="health_care"
         android:name="${applicationName}"

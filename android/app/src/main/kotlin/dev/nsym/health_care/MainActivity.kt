@@ -1,4 +1,4 @@
-package dev.nsym.health-care
+package dev.nsym.health_care
 
 import io.flutter.embedding.android.FlutterActivity
 
