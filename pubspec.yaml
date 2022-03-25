@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   health: ^3.4.3
   flutter_native_splash: ^2.1.1
+  permission_handler: ^9.2.0
 
 dev_dependencies:
   flutter_test:
