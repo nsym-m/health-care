@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:health_care/HealthApp.dart';
+import 'package:health_care/views/TestPage2.dart';
 
-class TestPage2 extends StatelessWidget {
+class TestPage1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Test2"),
+          title: Text("sample app"),
         ),
         body: Center(
             child:
@@ -15,7 +15,7 @@ class TestPage2 extends StatelessWidget {
               onPressed: () => {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return HealthApp();
+                      return TestPage2();
                     }))
                   },
               child: Text("進む", style: TextStyle(fontSize: 80))),

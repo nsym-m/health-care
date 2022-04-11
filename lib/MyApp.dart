@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:health_care/MyHomePage.dart';
-import 'package:health_care/TestPage1.dart';
-import 'package:health_care/TestPage2.dart';
-import 'package:health_care/HealthApp.dart';
+import 'package:health_care/views/MyHomePage.dart';
+import 'package:health_care/views/TestPage1.dart';
+import 'package:health_care/views/TestPage2.dart';
+import 'package:health_care/views/HealthApp.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: const MyHomePage(title: 'Flutter Deaaamo Homeああああ Page  aa'),
+        home: MyHomePage(title: 'Flutter Deaaamo Homeああああ Page  aa'),
         routes: {
           "/test1": (BuildContext context) => TestPage1(),
           "/test2": (BuildContext context) => TestPage2(),
