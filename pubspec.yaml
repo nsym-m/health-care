@@ -38,17 +38,15 @@ dependencies:
   flutter_native_splash: ^2.1.1
   permission_handler: ^9.2.0
   flutter_riverpod: ^1.0.3
-  build_runner: ^2.1.8
   flutter_gen_runner: ^4.1.6
   flutter_svg: ^1.0.3
   hooks_riverpod: ^1.0.3
   flutter_hooks: ^0.18.3
-  json_serializable: ^6.1.5
-  freezed_annotation: ^1.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.1.8
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -56,7 +54,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-  freezed: ^1.1.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -100,5 +97,5 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_native_splash:
-  image: "assets/icon/health_icon.png" 
+  image: "assets/icon/health_icon.png"
   color: "4DD0E1"
