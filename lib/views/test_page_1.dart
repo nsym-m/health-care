@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_care/views/TestPage2.dart';
+import 'package:health_care/views/test_page_2.dart';
 
 class TestPage1 extends StatelessWidget {
   @override

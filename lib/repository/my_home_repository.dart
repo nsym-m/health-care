@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:health_care/model/ResultModel.dart';
+import 'package:health_care/model/result_model.dart';
 
 final myHomeRepositoryProvider = Provider(
     (ref) => MyHomeRepositoryImpl(model: ref.read(resultModelProvider)));

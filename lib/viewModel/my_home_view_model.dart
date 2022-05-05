@@ -1,7 +1,7 @@
 // ViewModelの格納先はChangeNotifierProviderとなる
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:health_care/repository/MyHomeRepository.dart';
+import 'package:health_care/repository/my_home_repository.dart';
 
 final myHomeViewModelProvider = ChangeNotifierProvider(
     (ref) => MyHomeViewModel(repository: ref.read(myHomeRepositoryProvider)));

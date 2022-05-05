@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:health_care/views/TestPage1.dart';
-import 'package:health_care/viewModel/MyHomeViewModel.dart';
+import 'package:health_care/views/test_page_1.dart';
+import 'package:health_care/viewModel/my_home_view_model.dart';
 
 class MyHomePage extends ConsumerWidget {
   // StatefulWidgetからConsumerWidgetに変更
