@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:health_care/views/my_home_page.dart';
-import 'package:health_care/views/test_page_1.dart';
-import 'package:health_care/views/test_page_2.dart';
-import 'package:health_care/views/health_app.dart';
+import 'package:health_care/views/base_tab_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -24,11 +21,6 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: MyHomePage(title: 'Flutter Deaaamo Homeああああ Page  aa'),
-        routes: {
-          "/test1": (BuildContext context) => TestPage1(),
-          "/test2": (BuildContext context) => TestPage2(),
-          "/test3": (BuildContext context) => HealthApp(),
-        });
+        home: BaseTabView(),);
   }
 }
