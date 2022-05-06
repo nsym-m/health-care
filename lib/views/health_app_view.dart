@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
 
-class HealthApp extends StatefulWidget {
+class HealthAppView extends StatefulWidget {
   @override
   _HealthAppState createState() => _HealthAppState();
 }
@@ -20,7 +20,7 @@ enum AppState {
   STEPS_READY,
 }
 
-class _HealthAppState extends State<HealthApp> {
+class _HealthAppState extends State<HealthAppView> {
   List<HealthDataPoint> _healthDataList = [];
   AppState _state = AppState.DATA_NOT_FETCHED;
   int _nofSteps = 10;
