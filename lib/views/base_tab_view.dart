@@ -36,7 +36,7 @@ class BaseTabView extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             items: const [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home), label: 'calendar'),
+                  icon: Icon(Icons.calendar_month), label: 'calendar'),
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'health'),
             ],
