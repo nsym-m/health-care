@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:health_care/views/calendar_view.dart';
 import 'package:health_care/views/health_app_view.dart';
 import 'package:health_care/views/my_home_view.dart';
 import 'package:health_care/views/sample_view.dart';
@@ -12,6 +13,7 @@ class BaseTabView extends StatelessWidget {
   BaseTabView({Key? key}) : super(key: key);
 
   final widgets = [
+    const CalendarView(),
     const MyHomeView(),
     const SampleView(),
     HealthAppView(),
@@ -26,6 +28,7 @@ class BaseTabView extends StatelessWidget {
           body: widgets[page.state],
           bottomNavigationBar: BottomNavigationBar(
             items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'calendar'),
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'sample'),
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'health'),
