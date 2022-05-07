@@ -6,9 +6,9 @@ import 'package:health_care/views/calendar_view.dart';
 import 'package:health_care/views/health_app_view.dart';
 import 'package:health_care/views/my_home_view.dart';
 
-final baseTabViewProvider = StateProvider((ref) => PageType.health);
+final baseTabViewProvider = StateProvider((ref) => PageType.home);
 
-enum PageType { calendar, health, home }
+enum PageType { home, calendar, health }
 
 extension ParseToString on PageType {
   String toShortString() {
@@ -20,8 +20,8 @@ class BaseTabView extends StatelessWidget {
   BaseTabView({Key? key}) : super(key: key);
 
   final widgets = [
-    const CalendarView(),
     const MyHomeView(),
+    const CalendarView(),
     HealthAppView(),
   ];
 
@@ -35,9 +35,9 @@ class BaseTabView extends StatelessWidget {
           body: widgets[page.state.index],
           bottomNavigationBar: BottomNavigationBar(
             items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.calendar_month), label: 'calendar'),
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'health'),
             ],
             currentIndex: page.state.index,
