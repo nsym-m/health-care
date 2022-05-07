@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,13 +9,7 @@ final baseTabViewProvider = StateProvider((ref) => PageType.home);
 
 enum PageType { home, calendar, health }
 
-extension ParseToString on PageType {
-  String toShortString() {
-    return toString().split('.').last;
-  }
-}
-
-class BaseTabView extends StatelessWidget {
+class BaseTabView extends ConsumerWidget {
   BaseTabView({Key? key}) : super(key: key);
 
   final widgets = [
@@ -26,30 +19,22 @@ class BaseTabView extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, child) {
-        final page = ref.watch(baseTabViewProvider.state);
-        return Scaffold(
-          appBar: AppBar(title: Text(page.state.toShortString())),
-          body: widgets[page.state.index],
-          bottomNavigationBar: BottomNavigationBar(
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.calendar_month), label: 'calendar'),
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'health'),
-            ],
-            currentIndex: page.state.index,
-            onTap: (int index) => {
-              log(index.toString()),
-              log(page.state.toString()),
-              page.state = PageType.values[index],
-            },
-            type: BottomNavigationBarType.fixed,
-          ),
-        );
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final page = ref.watch(baseTabViewProvider.state);
+    return Scaffold(
+      appBar: AppBar(title: Text(page.state.name)),
+      body: widgets[page.state.index],
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month), label: 'calendar'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'health'),
+        ],
+        currentIndex: page.state.index,
+        onTap: (int index) => page.state = PageType.values[index],
+        type: BottomNavigationBarType.fixed,
+      ),
     );
   }
 }
