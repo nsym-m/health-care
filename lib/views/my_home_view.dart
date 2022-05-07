@@ -3,9 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_care/viewModel/my_home_view_model.dart';
 
 class MyHomeView extends ConsumerWidget {
-  const MyHomeView({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const MyHomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,9 +13,6 @@ class MyHomeView extends ConsumerWidget {
 
     // MyHomePageStateのreturn内容をそのまま入れる
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
       body: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

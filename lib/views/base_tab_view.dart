@@ -4,42 +4,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_care/views/health_app_view.dart';
 import 'package:health_care/views/my_home_view.dart';
+import 'package:health_care/views/sample_view.dart';
 
-final baseTabViewProvider = StateProvider<PageType>((ref) => PageType.health);
-
-enum PageType {
-  health,
-  home,
-}
+final baseTabViewProvider = StateProvider((ref) => 0);
 
 class BaseTabView extends StatelessWidget {
-  // BaseTabView({Key? key}) : super(key: key);
+  BaseTabView({Key? key}) : super(key: key);
 
-  final List<Widget> _pageWidgets = <Widget>[
+  final widgets = [
+    const MyHomeView(),
+    const SampleView(),
     HealthAppView(),
-    const MyHomeView(title: 'test'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Consumer(
-        builder: (BuildContext context, WidgetRef ref, Widget? child) {
-      final page = ref.watch(baseTabViewProvider.notifier);
-      log(page.state.toString());
-      return Scaffold(
-        body: _pageWidgets[page.state.index],
-        bottomNavigationBar: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'health'),
+      builder: (context, ref, child) {
+        final page = ref.watch(baseTabViewProvider.notifier);
+        return Scaffold(
+          body: widgets[page.state],
+          bottomNavigationBar: BottomNavigationBar(
+            items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'sample'),
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'health'),
             ],
-            currentIndex: page.state.index,
-            onTap: (index) => {
-                  page.state = PageType.values[index],
-                  log(page.state.toString())
-                },
-            type: BottomNavigationBarType.fixed),
-      );
-    });
+            currentIndex: page.state,
+            onTap: (int index) => {
+              log(index.toString()),
+              log(page.state.toString()),
+              page.state = index,
+            },
+            type: BottomNavigationBarType.fixed,
+          ),
+        );
+      },
+    );
   }
 }
