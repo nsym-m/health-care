@@ -18,7 +18,7 @@ class CalendarView extends ConsumerWidget {
     // final viewModel = ref.watch(myHomeViewModelProvider);
 
     return Scaffold(
-        body: Column(
+      body: Column(
         children: [
           TableCalendar<dynamic>(
             firstDay: kFirstDay,
@@ -58,8 +58,32 @@ class CalendarView extends ConsumerWidget {
               // No need to call `setState()` here
               focusedDay = changeDay;
             },
+            calendarBuilders: CalendarBuilders<dynamic>(
+              markerBuilder: (context, date, events) {
+                return _buildEventsMarker(date, events);
+              },
+            ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget _buildEventsMarker(DateTime date, List<dynamic> events) {
+    return Positioned(
+      right: 20,
+      bottom: 5,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 10000),
+        child: Center(
+          child: Text(
+            '1000歩',
+            style: TextStyle().copyWith(
+              color: Colors.black,
+              fontSize: 11,
+            ),
+          ),
+        ),
       ),
     );
   }
