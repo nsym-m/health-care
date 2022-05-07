@@ -23,7 +23,7 @@ class BaseTabView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, child) {
-        final page = ref.watch(baseTabViewProvider.notifier);
+        final page = ref.watch(baseTabViewProvider.state);
         return Scaffold(
           body: widgets[page.state],
           bottomNavigationBar: BottomNavigationBar(
