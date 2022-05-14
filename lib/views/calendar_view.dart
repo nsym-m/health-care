@@ -78,7 +78,7 @@ class CalendarView extends ConsumerWidget {
         child: Center(
           child: Text(
             '1000歩',
-            style: TextStyle().copyWith(
+            style: const TextStyle().copyWith(
               color: Colors.black,
               fontSize: 11,
             ),
