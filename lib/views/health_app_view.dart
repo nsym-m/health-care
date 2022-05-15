@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health/health.dart';
 import 'package:health_care/model/step_model.dart';
+import 'package:health_care/viewModel/my_home_view_model.dart';
 import 'package:health_care/viewModel/step_view_model.dart';
 
 class HealthAppView extends ConsumerWidget {
+  const HealthAppView({Key? key}) : super(key: key);
+
   Widget _contentFetchingData() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -26,7 +29,7 @@ class HealthAppView extends ConsumerWidget {
     return ListView.builder(
         itemCount: _healthDataList.length,
         itemBuilder: (_, index) {
-          HealthDataPoint p = _healthDataList[index];
+          HealthDataPoint p = viewModel._healthDataList[index];
           return ListTile(
             title: Text("${p.typeString}: ${p.value}"),
             trailing: Text('${p.unitString}'),
@@ -98,18 +101,18 @@ class HealthAppView extends ConsumerWidget {
               IconButton(
                 icon: Icon(Icons.file_download),
                 onPressed: () {
-                  fetchData();
+                  viewModel.fetchData();
                 },
               ),
               IconButton(
                 onPressed: () {
-                  addData();
+                  viewModel.addData();
                 },
                 icon: Icon(Icons.add),
               ),
               IconButton(
                 onPressed: () {
-                  fetchStepData();
+                  viewModel.fetchStepData();
                 },
                 icon: Icon(Icons.nordic_walking),
               )

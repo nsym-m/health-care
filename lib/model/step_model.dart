@@ -14,31 +14,32 @@ enum AppState {
   STEPS_READY,
 }
 
-final types = [
-  HealthDataType.STEPS,
-  HealthDataType.WEIGHT,
-  HealthDataType.HEIGHT,
-  HealthDataType.BLOOD_GLUCOSE,
-  HealthDataType.SLEEP_ASLEEP,
-  HealthDataType.SLEEP_AWAKE,
-  HealthDataType.SLEEP_IN_BED,
-];
-
-final permissions = [
-  HealthDataAccess.READ,
-  HealthDataAccess.READ,
-  HealthDataAccess.READ,
-  HealthDataAccess.READ,
-  HealthDataAccess.READ,
-  HealthDataAccess.READ,
-  HealthDataAccess.READ,
-];
 
 class StepModel {
-  List<HealthDataPoint> _healthDataList = [];
-  AppState _state = AppState.DATA_NOT_FETCHED;
-  int _nofSteps = 10;
-  double _mgdl = 10.0;
+  List<HealthDataPoint> healthDataList = [];
+  AppState state = AppState.DATA_NOT_FETCHED;
+  int nofSteps = 10;
+  double mgdl = 10.0;
 
   HealthFactory health = HealthFactory();
+
+  final types = [
+    HealthDataType.STEPS,
+    HealthDataType.WEIGHT,
+    HealthDataType.HEIGHT,
+    HealthDataType.BLOOD_GLUCOSE,
+    HealthDataType.SLEEP_ASLEEP,
+    HealthDataType.SLEEP_AWAKE,
+    HealthDataType.SLEEP_IN_BED,
+  ];
+
+  final permissions = [
+    HealthDataAccess.READ,
+    HealthDataAccess.READ,
+    HealthDataAccess.READ,
+    HealthDataAccess.READ,
+    HealthDataAccess.READ,
+    HealthDataAccess.READ,
+    HealthDataAccess.READ,
+  ];
 }

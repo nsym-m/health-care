@@ -1,13 +1,14 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:health/health.dart';
 import 'package:health_care/model/step_model.dart';
 
 final stepRepositoryProvider =
     Provider((ref) => StepRepositoryImpl(model: ref.read(stepModelProvider)));
 
 abstract class StepRepository {
-  Future<StepModel> fetchData();
-  Future<StepModel> addData();
-  Future<StepModel> fetchStepData();
+  Future fetchData();
+  Future addData();
+  Future fetchStepData();
 }
 
 class StepRepositoryImpl implements StepRepository {
@@ -23,20 +24,20 @@ class StepRepositoryImpl implements StepRepository {
     final yesterday = now.subtract(Duration(days: 1));
 
     var hasPermission =
-        HealthFactory.hasPermissions(types, permissions: permissions);
+        HealthFactory.hasPermissions(_model.types, permissions: _model.permissions);
 
     if (hasPermission == null) {
-      await HealthFactory.requestPermissions(types);
+      await HealthFactory.requestPermissions(_model.types);
     }
     bool requestedAuthorization =
-        await health.requestAuthorization(types, permissions: permissions);
+        await _model.health.requestAuthorization(_model.types, permissions: _model.permissions);
 
     if (requestedAuthorization) {
       try {
         List<HealthDataPoint> healthData =
-            await health.getHealthDataFromTypes(yesterday, now, types);
+            await _model.health.getHealthDataFromTypes(yesterday, now, types);
 
-        _healthDataList.addAll((healthData.length < 100)
+        _model.healthDataList.addAll((healthData.length < 100)
             ? healthData
             : healthData.sublist(0, 100));
       } catch (error) {
@@ -44,15 +45,15 @@ class StepRepositoryImpl implements StepRepository {
       }
 
       // filter out duplicates
-      _healthDataList = HealthFactory.removeDuplicates(_healthDataList);
+      _model.healthDataList = HealthFactory.removeDuplicates(_model.healthDataList);
 
       // print the results
-      _healthDataList.forEach((x) => print(x));
+      _model.healthDataList.forEach((x) => print(x));
 
       // update the UI to display the results
       setState(() {
         _state =
-            _healthDataList.isEmpty ? AppState.NO_DATA : AppState.DATA_READY;
+            _model.healthDataList.isEmpty ? AppState.NO_DATA : AppState.DATA_READY;
       });
     } else {
       print("Authorization not granted");
