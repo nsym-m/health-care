@@ -35,7 +35,6 @@ final permissions = [
 ];
 
 class StepModel {
-
   List<HealthDataPoint> _healthDataList = [];
   AppState _state = AppState.DATA_NOT_FETCHED;
   int _nofSteps = 10;
@@ -43,5 +42,3 @@ class StepModel {
 
   HealthFactory health = HealthFactory();
 }
-
-

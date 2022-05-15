@@ -8,8 +8,6 @@ import 'package:health_care/model/step_model.dart';
 import 'package:health_care/viewModel/step_view_model.dart';
 
 class HealthAppView extends ConsumerWidget {
-  
-
   Widget _contentFetchingData() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
