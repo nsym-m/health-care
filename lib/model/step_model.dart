@@ -1,10 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:health/health.dart';
 
 final stepModelProvider = Provider((ref) => StepModel());
-
-class StepModel {
-  int counter = 0;
-}
 
 enum AppState {
   DATA_NOT_FETCHED,
@@ -16,3 +13,35 @@ enum AppState {
   DATA_NOT_ADDED,
   STEPS_READY,
 }
+
+final types = [
+  HealthDataType.STEPS,
+  HealthDataType.WEIGHT,
+  HealthDataType.HEIGHT,
+  HealthDataType.BLOOD_GLUCOSE,
+  HealthDataType.SLEEP_ASLEEP,
+  HealthDataType.SLEEP_AWAKE,
+  HealthDataType.SLEEP_IN_BED,
+];
+
+final permissions = [
+  HealthDataAccess.READ,
+  HealthDataAccess.READ,
+  HealthDataAccess.READ,
+  HealthDataAccess.READ,
+  HealthDataAccess.READ,
+  HealthDataAccess.READ,
+  HealthDataAccess.READ,
+];
+
+class StepModel {
+
+  List<HealthDataPoint> _healthDataList = [];
+  AppState _state = AppState.DATA_NOT_FETCHED;
+  int _nofSteps = 10;
+  double _mgdl = 10.0;
+
+  HealthFactory health = HealthFactory();
+}
+
+
