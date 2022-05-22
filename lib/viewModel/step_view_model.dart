@@ -9,24 +9,25 @@ final stepViewModelProvider = ChangeNotifierProvider(
 
 // ChangeNotifierを継承することで、呼び出し元に変更を通知することが可能
 class StepViewModel extends ChangeNotifier {
-  StepRepository? repository;
   StepViewModel({this.repository});
+  StepRepository? repository;
 
-  Future fetchData() async {
-    await repository?.fetchData().then(() => {
-      notifyListeners()
-    },);
-  }
+  StepModel? _step;
 
-  Future addData() async {
-    await repository?.addData().then(() => {
-      notifyListeners()
-    },);
-  }
+  StepModel? get step => _step;
 
-  Future fetchStepData() async {
-    await repository?.fetchStepData().then(() => {
-      notifyListeners()
-    },);
+  Future<void> fetchStepData() async {
+    _step?.state = AppState.STEPS_READY;
+    notifyListeners();
+    await repository
+        ?.authorizetion()
+        .then((value) => _step?.hasPermission = value);
+    await repository?.fetchStepData().then(
+          (value) => {
+            _step?.steps = value.steps,
+            _step?.state = AppState.STEPS_READY,
+            notifyListeners()
+          },
+        );
   }
 }
