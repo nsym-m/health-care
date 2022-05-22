@@ -43,6 +43,7 @@ dependencies:
   hooks_riverpod: ^1.0.3
   flutter_hooks: ^0.18.3
   table_calendar: ^3.0.5
+  flutter_launcher_icons: ^0.9.2
 
 dev_dependencies:
   flutter_test:
@@ -101,3 +102,8 @@ flutter:
 flutter_native_splash:
   image: "assets/icon/health_icon.png"
   color: "4DD0E1"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/health_icon.png"
